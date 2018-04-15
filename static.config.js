@@ -20,6 +20,8 @@ export default {
     },
   ],
 
+  preact: true,
+
   extractCssChunks: true,
   webpack: (config, {defaultLoaders, stage}) => {
     const cssLoaders = [
