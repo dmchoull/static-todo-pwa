@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-// Your top level component
-import App from './App'
+import App from './components/App'
 
 // Export your top level component as JSX (for static rendering)
 // noinspection JSUnusedGlobalSymbols

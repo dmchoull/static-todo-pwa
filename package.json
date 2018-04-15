@@ -8,7 +8,15 @@
     "stage": "react-static build --staging",
     "build": "react-static build",
     "serve": "serve dist -p 3000",
+    "test": "jest",
+    "watch": "jest --watch",
     "lint": "eslint src test --ext .jsx --ext .js"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.pcss$": "identity-obj-proxy"
+    }
   },
   "dependencies": {
     "react": "^16.3.1",
@@ -21,14 +29,18 @@
     "autoprefixer": "^8.2.0",
     "babel-plugin-universal-import": "^1.4.0",
     "css-loader": "^0.28.11",
+    "dom-testing-library": "^1.7.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "extract-css-chunks-webpack-plugin": "^2.0.18",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^22.4.3",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.3",
+    "react-testing-library": "^2.1.1",
     "serve": "^6.1.0",
     "style-loader": "^0.20.3"
   }
