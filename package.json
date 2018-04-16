@@ -24,8 +24,10 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-hot-loader": "^4.0.1",
+    "react-redux": "^5.0.7",
     "react-static": "^5.7.5",
-    "react-static-routes": "^1.0.0"
+    "react-static-routes": "^1.0.0",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
