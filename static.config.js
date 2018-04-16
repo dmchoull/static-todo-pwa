@@ -12,7 +12,7 @@ export default {
   getRoutes: () => [
     {
       path: '/',
-      component: 'src/components/Home',
+      component: 'src/components/TodoList'
     },
     {
       is404: true,
