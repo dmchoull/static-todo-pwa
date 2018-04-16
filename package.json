@@ -10,7 +10,7 @@
     "serve": "serve dist -p 3000",
     "test": "jest",
     "watch": "jest --watch",
-    "lint": "eslint src test --ext .jsx --ext .js"
+    "lint": "eslint src __tests__ __mocks__ --ext .jsx --ext .js"
   },
   "jest": {
     "moduleNameMapper": {
