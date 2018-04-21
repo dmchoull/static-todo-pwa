@@ -12,6 +12,12 @@
     "watch": "jest --watch",
     "lint": "eslint src __tests__ __mocks__ --ext .jsx --ext .js"
   },
+  "browserslist": [
+    "> 1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
   "jest": {
     "projects": [
       {
@@ -50,6 +56,7 @@
     "dom-testing-library": "^1.7.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-compat": "^2.2.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
