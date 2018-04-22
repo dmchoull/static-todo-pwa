@@ -9,7 +9,7 @@ exports[`TodoItem renders a todo 1`] = `
     type="checkbox"
   />
   <label>
-    add for attribute to label
+    item 1
   </label>
 </li>
 `;

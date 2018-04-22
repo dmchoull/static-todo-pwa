@@ -1,22 +1,27 @@
 import deepFreeze from 'deep-freeze';
 import reducer from '../../src/reducers';
 import { addTodo } from '../../src/actions/todo';
+import Todo from '../../src/models/Todo';
 
 describe('todos reducer', () => {
-  const state = deepFreeze({ todos: ['item 1'] });
+  const initialState = deepFreeze({
+    todos: [Todo('item 1')],
+  });
 
   it('returns the current state given an unknown action', () => {
-    const newState = reducer(state, { type: 'unknown' });
-    expect(newState).toBe(state);
+    const newState = reducer(initialState, { type: 'unknown' });
+    expect(newState).toBe(initialState);
   });
 
-  it('adds a new todo when given an ADD_TODO action', () => {
-    const newState = reducer(state, addTodo('item 2'));
-    expect(newState.todos).toEqual(['item 1', 'item 2']);
-  });
+  describe('ADD_TODO', () => {
+    it('adds a new todo when given an ADD_TODO action', () => {
+      const newState = reducer(initialState, addTodo(Todo('item 2')));
+      expect(newState.todos).toEqual([Todo('item 1'), Todo('item 2')]);
+    });
 
-  it('does not add a todo if it already exists', () => {
-    const newState = reducer(state, addTodo('item 1'));
-    expect(newState.todos).toEqual(['item 1']);
+    it('does not add a todo if it already exists', () => {
+      const newState = reducer(initialState, addTodo(Todo('item 1')));
+      expect(newState).toEqual(initialState);
+    });
   });
 });

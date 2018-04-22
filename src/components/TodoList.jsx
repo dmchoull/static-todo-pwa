@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Todo from '../models/Todo';
 import TodoItem from './TodoItem';
 import styles from '../assets/stylesheets/todo_list.pcss';
 
 export default class TodoList extends React.Component {
   static propTypes = {
-    todos: PropTypes.arrayOf(PropTypes.string),
+    todos: PropTypes.arrayOf(Todo.propTypes),
     addTodo: PropTypes.func.isRequired,
   };
 
@@ -19,7 +20,7 @@ export default class TodoList extends React.Component {
     }
 
     const input = e.target;
-    this.props.addTodo(input.value);
+    this.props.addTodo(Todo(input.value));
     input.value = '';
   };
 
@@ -40,7 +41,7 @@ export default class TodoList extends React.Component {
 
         <section className={styles.main}>
           <ul className={styles.todoList}>
-            {todos.map(todo => <TodoItem key={todo} todo={todo} />)}
+            {todos.map(todo => <TodoItem key={todo.text} todo={todo} />)}
           </ul>
         </section>
       </div>

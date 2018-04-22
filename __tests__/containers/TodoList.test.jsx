@@ -5,6 +5,7 @@ import { render, Simulate } from 'react-testing-library';
 import 'dom-testing-library/extend-expect';
 import TodoList from '../../src/containers/TodoList';
 import reducer from '../../src/reducers';
+import todo from '../../src/models/Todo';
 
 function renderWithRedux(ui, { initialState, store = createStore(reducer, initialState) } = {}) {
   return {
@@ -14,8 +15,8 @@ function renderWithRedux(ui, { initialState, store = createStore(reducer, initia
 }
 
 describe('TodoList', () => {
-  test('renders current todos', () => {
-    const initialState = { todos: ['item 1', 'item 2'] };
+  test('renders todos', () => {
+    const initialState = { todos: [todo('item 1'), todo('item 2')] };
     const { queryByText } = renderWithRedux(<TodoList />, { initialState });
 
     expect(queryByText('item 1')).toBeInTheDOM();
@@ -24,7 +25,7 @@ describe('TodoList', () => {
   });
 
   test('adding a new item', () => {
-    const initialState = { todos: ['item 1'] };
+    const initialState = { todos: [todo('item 1')] };
     const { queryByText, getByTestId } = renderWithRedux(<TodoList />, { initialState });
 
     const input = getByTestId('add-todo');

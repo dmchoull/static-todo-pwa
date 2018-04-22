@@ -9,7 +9,7 @@
     "build": "react-static build",
     "serve": "serve dist -p 3000",
     "test": "jest",
-    "watch": "jest --watch",
+    "watch": "jest --watch --notify",
     "lint": "eslint src __tests__ __mocks__ --ext .jsx --ext .js"
   },
   "browserslist": [
