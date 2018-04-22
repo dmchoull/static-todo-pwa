@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoItem renders a todo 1`] = `
+<li
+  class="todoItem"
+>
+  <input
+    class="toggle"
+    type="checkbox"
+  />
+  <label>
+    add for attribute to label
+  </label>
+</li>
+`;

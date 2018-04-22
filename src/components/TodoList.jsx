@@ -1,28 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { forbidExtraProps } from 'airbnb-prop-types';
+import TodoItem from './TodoItem';
 import styles from '../assets/stylesheets/todo_list.pcss';
 
-const TodoList = ({ todos }) => (
-  <ul className={styles.todoList}>
-    {todos.map(todo => <TodoItem key={todo} todo={todo} />)}
-  </ul>
-);
+export default class TodoList extends React.Component {
+  static propTypes = {
+    todos: PropTypes.arrayOf(PropTypes.string),
+    addTodo: PropTypes.func.isRequired,
+  };
 
-TodoList.defaultProps = {
-  todos: [],
-};
+  static defaultProps = {
+    todos: [],
+  };
 
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.string),
-};
+  handleKeyDown = (e) => {
+    if (e.keyCode !== 13) {
+      return;
+    }
 
-const TodoItem = ({ todo }) => (
-  <li key={todo} className={styles.todoItem}>{todo}</li>
-);
+    const input = e.target;
+    this.props.addTodo(input.value);
+    input.value = '';
+  };
 
-TodoItem.propTypes = forbidExtraProps({
-  todo: PropTypes.string.isRequired,
-});
+  render() {
+    const { todos } = this.props;
+    return (
+      <div className={styles.todoapp}>
+        <header className={styles.header}>
+          <h1>todos</h1>
+          <input
+            className={styles.newTodo}
+            data-testid="add-todo"
+            type="text"
+            placeholder="What needs to be done?"
+            onKeyDown={this.handleKeyDown}
+          />
+        </header>
 
-export default TodoList;
+        <section className={styles.main}>
+          <ul className={styles.todoList}>
+            {todos.map(todo => <TodoItem key={todo} todo={todo} />)}
+          </ul>
+        </section>
+      </div>
+    );
+  }
+}

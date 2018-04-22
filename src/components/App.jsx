@@ -6,13 +6,9 @@ import Routes from 'react-static-routes';
 import '../assets/stylesheets/app.pcss';
 
 const App = () => (
-  <React.Fragment>
-    <h1>TODO</h1>
-
-    <Router>
-      <Routes />
-    </Router>
-  </React.Fragment>
+  <Router>
+    <Routes />
+  </Router>
 );
 
 export default hot(module)(App);
