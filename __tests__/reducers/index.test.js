@@ -14,4 +14,9 @@ describe('todos reducer', () => {
     const newState = reducer(state, addTodo('item 2'));
     expect(newState.todos).toEqual(['item 1', 'item 2']);
   });
+
+  it('does not add a todo if it already exists', () => {
+    const newState = reducer(state, addTodo('item 1'));
+    expect(newState.todos).toEqual(['item 1']);
+  });
 });
