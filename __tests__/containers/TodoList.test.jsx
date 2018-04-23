@@ -5,7 +5,7 @@ import { render, Simulate } from 'react-testing-library';
 import 'dom-testing-library/extend-expect';
 import TodoList from '../../src/containers/TodoList';
 import reducer from '../../src/reducers';
-import todo from '../../src/models/Todo';
+import Todo from '../../src/models/Todo';
 
 function renderWithRedux(ui, { initialState, store = createStore(reducer, initialState) } = {}) {
   return {
@@ -16,7 +16,7 @@ function renderWithRedux(ui, { initialState, store = createStore(reducer, initia
 
 describe('TodoList', () => {
   test('renders todos', () => {
-    const initialState = { todos: [todo('item 1'), todo('item 2')] };
+    const initialState = { todos: [Todo('item 1'), Todo('item 2', true)] };
     const { queryByText } = renderWithRedux(<TodoList />, { initialState });
 
     expect(queryByText('item 1')).toBeInTheDOM();
@@ -25,7 +25,7 @@ describe('TodoList', () => {
   });
 
   test('adding a new item', () => {
-    const initialState = { todos: [todo('item 1')] };
+    const initialState = { todos: [Todo('item 1')] };
     const { queryByText, getByTestId } = renderWithRedux(<TodoList />, { initialState });
 
     const input = getByTestId('add-todo');
@@ -36,5 +36,29 @@ describe('TodoList', () => {
     expect(queryByText('item 1')).toBeInTheDOM();
     expect(queryByText('item 2')).toBeInTheDOM();
     expect(input.value).toEqual('');
+  });
+
+  test('completing a todo', () => {
+    const initialState = { todos: [Todo('item 1'), Todo('item 2')] };
+    const { getByTestId, store } = renderWithRedux(<TodoList />, { initialState });
+
+    const checkbox = getByTestId('complete-item 2');
+    checkbox.value = true;
+    Simulate.change(checkbox);
+
+    expect(store.getState().todos[1].complete).toBeTruthy();
+    expect(getByTestId('todo-list')).toMatchSnapshot();
+  });
+
+  test('un-completing a completed todo', () => {
+    const initialState = { todos: [Todo('item 1'), Todo('item 2', true)] };
+    const { getByTestId, store } = renderWithRedux(<TodoList />, { initialState });
+
+    const checkbox = getByTestId('complete-item 2');
+    checkbox.value = false;
+    Simulate.change(checkbox);
+
+    expect(store.getState().todos[1].complete).toBeFalsy();
+    expect(getByTestId('todo-list')).toMatchSnapshot();
   });
 });

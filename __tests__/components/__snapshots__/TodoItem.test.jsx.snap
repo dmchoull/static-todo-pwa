@@ -1,11 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TodoItem renders a todo 1`] = `
+exports[`TodoItem renders a complete todo 1`] = `
 <li
-  class="todoItem"
+  class="todoItem completed"
 >
   <input
     class="toggle"
+    data-testid="complete-item 1"
+    type="checkbox"
+  />
+  <label>
+    item 1
+  </label>
+</li>
+`;
+
+exports[`TodoItem renders an active todo 1`] = `
+<li
+  class="todoItem "
+>
+  <input
+    class="toggle"
+    data-testid="complete-item 1"
     type="checkbox"
   />
   <label>

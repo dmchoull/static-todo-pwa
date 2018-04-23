@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Todo from '../models/Todo';
-import TodoItem from './TodoItem';
+import TodoItem from '../containers/TodoItem';
 import styles from '../assets/stylesheets/todo_list.pcss';
 
 export default class TodoList extends React.Component {
@@ -40,7 +40,7 @@ export default class TodoList extends React.Component {
         </header>
 
         <section className={styles.main}>
-          <ul className={styles.todoList}>
+          <ul data-testid="todo-list" className={styles.todoList}>
             {todos.map(todo => <TodoItem key={todo.text} todo={todo} />)}
           </ul>
         </section>

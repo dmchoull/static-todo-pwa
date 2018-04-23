@@ -1,12 +1,12 @@
 export const ADD_TODO = 'ADD_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
+export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
 
 export const addTodo = todo => ({
   type: ADD_TODO,
   todo,
 });
 
-export const completeTodo = todo => ({
-  type: COMPLETE_TODO,
+export const toggleComplete = todo => ({
+  type: TOGGLE_COMPLETE,
   todo,
 });

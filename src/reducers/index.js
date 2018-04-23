@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import Todo from '../models/Todo';
-import { ADD_TODO, COMPLETE_TODO } from '../actions/todo';
+import { ADD_TODO, TOGGLE_COMPLETE } from '../actions/todo';
 
 const todos = (state = [], action) => {
   switch (action.type) {
@@ -11,10 +11,10 @@ const todos = (state = [], action) => {
 
       return [...state, action.todo];
 
-    case COMPLETE_TODO:
+    case TOGGLE_COMPLETE:
       return state.map((todo) => {
         if (todo.text === action.todo.text) {
-          return Todo(todo.text, true);
+          return Todo(todo.text, !todo.complete);
         }
 
         return todo;

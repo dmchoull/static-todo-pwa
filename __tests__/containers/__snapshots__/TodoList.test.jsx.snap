@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoList completing a todo 1`] = `
+<ul
+  class="todoList"
+  data-testid="todo-list"
+>
+  <li
+    class="todoItem "
+  >
+    <input
+      class="toggle"
+      data-testid="complete-item 1"
+      type="checkbox"
+    />
+    <label>
+      item 1
+    </label>
+  </li>
+  <li
+    class="todoItem completed"
+  >
+    <input
+      class="toggle"
+      data-testid="complete-item 2"
+      type="checkbox"
+      value="true"
+    />
+    <label>
+      item 2
+    </label>
+  </li>
+</ul>
+`;
+
+exports[`TodoList un-completing a completed todo 1`] = `
+<ul
+  class="todoList"
+  data-testid="todo-list"
+>
+  <li
+    class="todoItem "
+  >
+    <input
+      class="toggle"
+      data-testid="complete-item 1"
+      type="checkbox"
+    />
+    <label>
+      item 1
+    </label>
+  </li>
+  <li
+    class="todoItem "
+  >
+    <input
+      class="toggle"
+      data-testid="complete-item 2"
+      type="checkbox"
+      value="false"
+    />
+    <label>
+      item 2
+    </label>
+  </li>
+</ul>
+`;

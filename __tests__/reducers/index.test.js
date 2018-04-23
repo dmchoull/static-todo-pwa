@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
 import reducer from '../../src/reducers';
-import { addTodo, completeTodo } from '../../src/actions/todo';
+import { addTodo, toggleComplete } from '../../src/actions/todo';
 import Todo from '../../src/models/Todo';
 
 describe('todos reducer', () => {
@@ -25,10 +25,19 @@ describe('todos reducer', () => {
     });
   });
 
-  describe('COMPLETE_TODO', () => {
-    it('moves an active todo to completed', () => {
-      const newState = reducer(initialState, completeTodo(Todo('item 1')));
+  describe('TOGGLE_COMPLETE', () => {
+    it('changes an active todo to completed', () => {
+      const newState = reducer(initialState, toggleComplete(Todo('item 1')));
       expect(newState.todos).toEqual([Todo('item 1', true)]);
+    });
+
+    it('changes a completed todo to active', () => {
+      const state = deepFreeze({
+        todos: [Todo('item 1', true)],
+      });
+
+      const newState = reducer(state, toggleComplete(Todo('item 1', true)));
+      expect(newState.todos).toEqual([Todo('item 1')]);
     });
   });
 });
