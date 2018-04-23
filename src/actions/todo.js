@@ -1,8 +1,12 @@
-const ADD_TODO = 'ADD_TODO';
+export const ADD_TODO = 'ADD_TODO';
+export const COMPLETE_TODO = 'COMPLETE_TODO';
 
-const addTodo = todo => ({
+export const addTodo = todo => ({
   type: ADD_TODO,
   todo,
 });
 
-export { ADD_TODO, addTodo };
+export const completeTodo = todo => ({
+  type: COMPLETE_TODO,
+  todo,
+});
