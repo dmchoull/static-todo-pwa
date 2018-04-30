@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import { Router } from 'react-static';
+import { Router, Head } from 'react-static';
 import { applyMiddleware, compose, createStore } from 'redux';
 import persistState, { mergePersistedState } from 'redux-localstorage';
 import adapter from 'redux-localstorage/lib/adapters/localStorage';
@@ -35,12 +35,38 @@ const store = createStore(
   enhancer,
 );
 
-const App = () => (
-  <Provider store={store}>
-    <Router>
-      <Routes />
-    </Router>
-  </Provider>
-);
+class App extends React.Component {
+  componentDidMount() {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // eslint-disable-next-line compat/compat
+        navigator.serviceWorker.register('/sw.js').then((registration) => {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, (err) => {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Head>
+          <meta name="theme-color" content="#2196F3" />
+          <link rel="manifest" href="/manifest.json" />
+        </Head>
+
+        <Provider store={store}>
+          <Router>
+            <Routes />
+          </Router>
+        </Provider>
+      </React.Fragment>
+    );
+  }
+}
 
 export default hot(module)(App);

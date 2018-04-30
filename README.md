@@ -7,5 +7,4 @@ Originally based on the react-static "blank" template, with support added for po
 https://static-todo-pwa.firebaseapp.com
 
 ## TODO
- * The actual TODO list part
- * Make it a PWA
+ * Allow todos to be deleted

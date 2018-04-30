@@ -1,4 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies,no-param-reassign */
+import path from 'path';
+import ServiceWorkerWebpackPlugin from 'serviceworker-webpack-plugin';
 import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import autoprefixer from 'autoprefixer';
@@ -92,6 +94,12 @@ export default {
       ];
     }
 
-    return config;
+    return {
+      ...config,
+      plugins: [
+        ...config.plugins,
+        new ServiceWorkerWebpackPlugin({ entry: path.join(__dirname, 'src/sw.js') }),
+      ],
+    };
   },
 };
